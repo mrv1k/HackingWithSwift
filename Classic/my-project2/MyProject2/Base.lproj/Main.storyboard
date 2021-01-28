@@ -16,16 +16,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anI-4D-r5h">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYv-TM-KU6">
+                                <rect key="frame" x="87.5" y="37" width="200" height="100"/>
+                                <state key="normal" image="us"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anI-4D-r5h">
                                 <rect key="frame" x="87.5" y="170" width="200" height="100"/>
                                 <state key="normal" image="us"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zl-ag-z6R">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zl-ag-z6R">
                                 <rect key="frame" x="87.5" y="304" width="200" height="100"/>
-                                <state key="normal" image="us"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYv-TM-KU6">
-                                <rect key="frame" x="87.5" y="37" width="200" height="100"/>
                                 <state key="normal" image="us"/>
                             </button>
                         </subviews>
@@ -33,11 +33,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="4zl-ag-z6R" firstAttribute="centerX" secondItem="anI-4D-r5h" secondAttribute="centerX" id="0b1-K3-Y4C"/>
+                            <constraint firstItem="4zl-ag-z6R" firstAttribute="centerX" secondItem="anI-4D-r5h" secondAttribute="centerX" id="3uW-xz-bXt"/>
                             <constraint firstItem="hYv-TM-KU6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="45P-1Y-fPM"/>
                             <constraint firstItem="hYv-TM-KU6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="37" id="4RV-Rr-8UO"/>
+                            <constraint firstItem="anI-4D-r5h" firstAttribute="top" secondItem="hYv-TM-KU6" secondAttribute="bottom" constant="33" id="8BT-Gl-tXy"/>
                             <constraint firstItem="anI-4D-r5h" firstAttribute="centerX" secondItem="hYv-TM-KU6" secondAttribute="centerX" id="BOZ-k0-uiP"/>
+                            <constraint firstItem="anI-4D-r5h" firstAttribute="centerX" secondItem="hYv-TM-KU6" secondAttribute="centerX" id="FzQ-xV-cDc"/>
+                            <constraint firstItem="4zl-ag-z6R" firstAttribute="top" secondItem="anI-4D-r5h" secondAttribute="bottom" constant="34" id="Sva-91-GUS"/>
                             <constraint firstItem="anI-4D-r5h" firstAttribute="trailing" secondItem="hYv-TM-KU6" secondAttribute="trailing" id="WR8-mW-Itk"/>
+                            <constraint firstItem="4zl-ag-z6R" firstAttribute="trailing" secondItem="anI-4D-r5h" secondAttribute="trailing" id="XDi-6n-MMS"/>
+                            <constraint firstItem="anI-4D-r5h" firstAttribute="trailing" secondItem="hYv-TM-KU6" secondAttribute="trailing" id="a9F-bP-3MW"/>
                             <constraint firstItem="4zl-ag-z6R" firstAttribute="trailing" secondItem="anI-4D-r5h" secondAttribute="trailing" id="cbN-8N-XXk"/>
+                            <constraint firstItem="hYv-TM-KU6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="pff-BO-Ata"/>
                             <constraint firstItem="anI-4D-r5h" firstAttribute="trailing" secondItem="hYv-TM-KU6" secondAttribute="trailing" id="xNL-nR-eGm"/>
                         </constraints>
                     </view>
