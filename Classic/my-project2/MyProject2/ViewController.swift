@@ -1,0 +1,22 @@
+//
+//  ViewController.swift
+//  MyProject2
+//
+//  Created by Viktor Khotimchenko on 2021-01-28.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+    @IBOutlet var button1: UIButton!
+    @IBOutlet var button2: UIButton!
+    @IBOutlet var button3: UIButton!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+
+
+}
+
