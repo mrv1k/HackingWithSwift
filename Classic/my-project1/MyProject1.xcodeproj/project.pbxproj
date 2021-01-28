@@ -13,6 +13,7 @@
 		5783B85725C1B1CA003A26A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5783B85525C1B1CA003A26A6 /* Main.storyboard */; };
 		5783B85925C1B1CB003A26A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5783B85825C1B1CB003A26A6 /* Assets.xcassets */; };
 		5783B85C25C1B1CB003A26A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5783B85A25C1B1CB003A26A6 /* LaunchScreen.storyboard */; };
+		578CBED725C2312A00B7F34D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CBED625C2312A00B7F34D /* DetailViewController.swift */; };
 		57E45F9825C1B3ED00695048 /* nssl0049.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57E45F8E25C1B3ED00695048 /* nssl0049.jpg */; };
 		57E45F9925C1B3ED00695048 /* nssl0046.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57E45F8F25C1B3ED00695048 /* nssl0046.jpg */; };
 		57E45F9A25C1B3ED00695048 /* nssl0091.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57E45F9025C1B3ED00695048 /* nssl0091.jpg */; };
@@ -34,6 +35,7 @@
 		5783B85825C1B1CB003A26A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5783B85B25C1B1CB003A26A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5783B85D25C1B1CB003A26A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		578CBED625C2312A00B7F34D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		57E45F8E25C1B3ED00695048 /* nssl0049.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0049.jpg; sourceTree = "<group>"; };
 		57E45F8F25C1B3ED00695048 /* nssl0046.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0046.jpg; sourceTree = "<group>"; };
 		57E45F9025C1B3ED00695048 /* nssl0091.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0091.jpg; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 		5783B84E25C1B1CA003A26A6 /* MyProject1 */ = {
 			isa = PBXGroup;
 			children = (
+				578CBED625C2312A00B7F34D /* DetailViewController.swift */,
 				5783B84F25C1B1CA003A26A6 /* AppDelegate.swift */,
 				5783B85125C1B1CA003A26A6 /* SceneDelegate.swift */,
 				5783B85325C1B1CA003A26A6 /* ViewController.swift */,
@@ -189,6 +192,7 @@
 				5783B85425C1B1CA003A26A6 /* ViewController.swift in Sources */,
 				5783B85025C1B1CA003A26A6 /* AppDelegate.swift in Sources */,
 				5783B85225C1B1CA003A26A6 /* SceneDelegate.swift in Sources */,
+				578CBED725C2312A00B7F34D /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
