@@ -5,6 +5,7 @@
 //  Created by Viktor Khotimchenko on 2021-01-27.
 //
 
+import MessageUI
 import UIKit
 
 class ViewController: UITableViewController {
@@ -26,8 +27,10 @@ class ViewController: UITableViewController {
                 pictures.append(item)
             }
         }
-
         print(pictures)
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .action, target: self, action: #selector(recommendApp))
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,5 +50,23 @@ class ViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-}
 
+    @objc func recommendApp() {
+        if !MFMessageComposeViewController.canSendText() {
+            print("SMS services are not available")
+        }
+
+        let vc = UIActivityViewController(activityItems: ["sharing is caring"], applicationActivities: [])
+
+        vc.activityItemsConfiguration = [
+            UIActivity.ActivityType.message,
+        ] as? UIActivityItemsConfigurationReading
+
+        vc.excludedActivityTypes = [
+            UIActivity.ActivityType.airDrop,
+        ]
+
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
+    }
+}
