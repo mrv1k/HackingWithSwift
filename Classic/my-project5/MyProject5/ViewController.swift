@@ -67,7 +67,7 @@ class ViewController: UITableViewController {
 
     func submit(_ rawAnswer: String) {
         let answer = rawAnswer.lowercased()
-        if isPossible(word: answer) && isOriginal(word: answer) && isReal(word: answer) {
+        if isPossible(word: answer), isOriginal(word: answer), isReal(word: answer) {
             usedWords.insert(answer, at: 0)
 
             let indexPath = IndexPath(row: 0, section: 0)
@@ -75,15 +75,28 @@ class ViewController: UITableViewController {
         }
     }
 
-    func isOriginal(word: String) -> Bool {
-        true
+    func isPossible(word: String) -> Bool {
+        guard var tempWord = title?.lowercased() else { return false }
+
+        for letter in word {
+            if let position = tempWord.firstIndex(of: letter) {
+                tempWord.remove(at: position)
+            } else {
+                return false
+            }
+        }
+        return true
     }
 
-    func isPossible(word: String) -> Bool {
-        true
+    func isOriginal(word: String) -> Bool {
+        !usedWords.contains(word)
     }
 
     func isReal(word: String) -> Bool {
-        true
+        let checker = UITextChecker()
+        let range = NSRange(location: 0, length: word.utf16.count)
+        let misspeledRange = checker.rangeOfMisspelledWord(
+            in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        return misspeledRange.location == NSNotFound
     }
 }
