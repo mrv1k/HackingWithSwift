@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5711358425C8E5FD0073781D /* start.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5711358325C8E5FD0073781D /* start.txt */; };
 		57DBE35225C8E439009E9E3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBE35125C8E439009E9E3E /* AppDelegate.swift */; };
 		57DBE35425C8E439009E9E3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBE35325C8E439009E9E3E /* SceneDelegate.swift */; };
 		57DBE35625C8E439009E9E3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBE35525C8E439009E9E3E /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5711358325C8E5FD0073781D /* start.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = start.txt; path = "../../project5-files/start.txt"; sourceTree = "<group>"; };
 		57DBE34E25C8E439009E9E3E /* MyProject5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyProject5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57DBE35125C8E439009E9E3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57DBE35325C8E439009E9E3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				57DBE35A25C8E43A009E9E3E /* Assets.xcassets */,
 				57DBE35C25C8E43A009E9E3E /* LaunchScreen.storyboard */,
 				57DBE35F25C8E43A009E9E3E /* Info.plist */,
+				5711358325C8E5FD0073781D /* start.txt */,
 			);
 			path = MyProject5;
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57DBE35E25C8E43A009E9E3E /* LaunchScreen.storyboard in Resources */,
+				5711358425C8E5FD0073781D /* start.txt in Resources */,
 				57DBE35B25C8E43A009E9E3E /* Assets.xcassets in Resources */,
 				57DBE35925C8E439009E9E3E /* Main.storyboard in Resources */,
 			);
