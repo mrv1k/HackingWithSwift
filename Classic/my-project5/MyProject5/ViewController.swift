@@ -66,13 +66,35 @@ class ViewController: UITableViewController {
     }
 
     func submit(_ rawAnswer: String) {
+        // bugfix
+        guard !rawAnswer.isEmpty else { return }
         let answer = rawAnswer.lowercased()
+
+        var errorTitle = ""
+        var errorMessage = ""
+
+        // todo refactor to enum
         if isPossible(word: answer), isOriginal(word: answer), isReal(word: answer) {
             usedWords.insert(answer, at: 0)
 
             let indexPath = IndexPath(row: 0, section: 0)
             tableView.insertRows(at: [indexPath], with: .automatic)
+            return
         }
+        if !isPossible(word: answer) {
+            errorTitle = "Word not recognized"
+            errorMessage = "You can't just make them up, you know!"
+        } else if !isOriginal(word: answer) {
+            errorTitle = "Word already used"
+            errorMessage = "Be more original!"
+        } else if !isReal(word: answer) {
+            errorTitle = "Word not possible"
+            errorMessage = "You can't spell that world from \(rawAnswer)."
+        }
+
+        let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
 
     func isPossible(word: String) -> Bool {
