@@ -13,6 +13,8 @@
 		57CAF89325CAF2DE00C86C4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57CAF89125CAF2DE00C86C4B /* Main.storyboard */; };
 		57CAF89525CAF2DF00C86C4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57CAF89425CAF2DF00C86C4B /* Assets.xcassets */; };
 		57CAF89825CAF2DF00C86C4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57CAF89625CAF2DF00C86C4B /* LaunchScreen.storyboard */; };
+		57CAF8A125CAF6F900C86C4B /* Petition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CAF8A025CAF6F900C86C4B /* Petition.swift */; };
+		57CAF8A425CAF76000C86C4B /* Petitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CAF8A325CAF76000C86C4B /* Petitions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		57CAF89425CAF2DF00C86C4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57CAF89725CAF2DF00C86C4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57CAF89925CAF2DF00C86C4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57CAF8A025CAF6F900C86C4B /* Petition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petition.swift; sourceTree = "<group>"; };
+		57CAF8A325CAF76000C86C4B /* Petitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petitions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				57CAF88B25CAF2DE00C86C4B /* AppDelegate.swift */,
 				57CAF88D25CAF2DE00C86C4B /* SceneDelegate.swift */,
 				57CAF88F25CAF2DE00C86C4B /* ViewController.swift */,
+				57CAF8A025CAF6F900C86C4B /* Petition.swift */,
+				57CAF8A325CAF76000C86C4B /* Petitions.swift */,
 				57CAF89125CAF2DE00C86C4B /* Main.storyboard */,
 				57CAF89425CAF2DF00C86C4B /* Assets.xcassets */,
 				57CAF89625CAF2DF00C86C4B /* LaunchScreen.storyboard */,
@@ -139,7 +145,9 @@
 			files = (
 				57CAF89025CAF2DE00C86C4B /* ViewController.swift in Sources */,
 				57CAF88C25CAF2DE00C86C4B /* AppDelegate.swift in Sources */,
+				57CAF8A125CAF6F900C86C4B /* Petition.swift in Sources */,
 				57CAF88E25CAF2DE00C86C4B /* SceneDelegate.swift in Sources */,
+				57CAF8A425CAF76000C86C4B /* Petitions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
