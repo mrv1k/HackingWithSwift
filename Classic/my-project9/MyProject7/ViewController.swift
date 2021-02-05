@@ -26,12 +26,16 @@ class ViewController: UITableViewController {
             "https://www.hackingwithswift.com/samples/petitions-1.json" :
             "https://www.hackingwithswift.com/samples/petitions-2.json"
 
-        if let url = URL(string: urlString) {
-            if let data = try? Data(contentsOf: url) {
-                parse(json: data)
-                return
+        DispatchQueue.global(qos: .userInitiated).async {
+            [weak self] in
+            if let url = URL(string: urlString) {
+                if let data = try? Data(contentsOf: url) {
+                    self?.parse(json: data)
+                    return
+                }
             }
         }
+
         showError()
     }
 
