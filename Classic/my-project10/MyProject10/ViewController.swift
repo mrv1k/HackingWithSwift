@@ -72,18 +72,29 @@ class ViewController: UICollectionViewController,
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let person = people[indexPath.item]
 
-        let ac = UIAlertController(title: "Rename person", message: nil, preferredStyle: .alert)
-        ac.addTextField()
+        let renameAC = UIAlertController(title: "Rename person", message: nil, preferredStyle: .alert)
+        renameAC.addTextField()
 
-        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self, weak ac] _ in
+        renameAC.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self, weak renameAC] _ in
             guard let self = self else { return }
 
-            guard let newName = ac?.textFields?.first?.text else { return }
+            guard let newName = renameAC?.textFields?.first?.text else { return }
             person.name = newName
             self.collectionView.reloadData()
         }))
 
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        present(ac, animated: true)
+        renameAC.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        let menuAC = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
+        menuAC.addAction(UIAlertAction(title: "Rename", style: .default, handler: { _ in
+            self.present(renameAC, animated: true)
+        }))
+
+        menuAC.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+            self.people.remove(at: indexPath.item)
+            self.collectionView.reloadData()
+        }))
+
+        present(menuAC, animated: true)
     }
 }
