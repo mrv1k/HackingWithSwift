@@ -22,11 +22,15 @@ class ViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image:
             UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(showSearchAlert))
 
-        performSelector(inBackground: #selector(fetchJSON), with: nil)
+        // Bugfix:
+        // -[UINavigationController tabBarItem] must be used from main thread only
+        // UIViewController.navigationController must be used from main thread only
+        let tag = navigationController?.tabBarItem.tag
+        performSelector(inBackground: #selector(fetchJSON(tag:)), with: tag)
     }
 
-    @objc func fetchJSON() {
-        let urlString = navigationController?.tabBarItem.tag == 0 ?
+    @objc func fetchJSON(tag: Int) {
+        let urlString = tag == 0 ?
             "https://www.hackingwithswift.com/samples/petitions-1.json" :
             "https://www.hackingwithswift.com/samples/petitions-2.json"
 
@@ -83,7 +87,12 @@ class ViewController: UITableViewController {
             allPetitions = jsonPetitions.results
             filteredPetitions = jsonPetitions.results
 
-            tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
+//            UITableViewController.tableView must be used from main thread only
+//                tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+
         } else {
             performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
         }
