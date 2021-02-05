@@ -53,8 +53,10 @@ class ViewController: UITableViewController {
             guard let self = self else { return }
             guard let inputQuery = ac.textFields?.first?.text else { return }
             self.filterQuery = inputQuery
-            self.filteredPetitions = self.allPetitions.filter { (petition: Petition) -> Bool in
-                petition.title.lowercased().contains(inputQuery.lowercased())
+            DispatchQueue.global(qos: .background).sync {
+                self.filteredPetitions = self.allPetitions.filter { (petition: Petition) -> Bool in
+                    petition.title.lowercased().contains(inputQuery.lowercased())
+                }
             }
             self.tableView.reloadData()
         }))
