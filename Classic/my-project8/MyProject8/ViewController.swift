@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     var score = 0 {
         didSet { scoreLabel.text = "Score: \(score)" }
     }
+    var wordsSolved = 0
 
     var level = 1
 
@@ -60,14 +61,20 @@ class ViewController: UIViewController {
 
         let submit = UIButton(type: .system)
         submit.translatesAutoresizingMaskIntoConstraints = false
-        submit.setTitle("SUBMIT", for: .normal)
+        submit.setTitle(" SUBMIT ", for: .normal)
         submit.addTarget(self, action: #selector(submitTapped(_:)), for: .touchUpInside)
+        submit.layer.borderWidth = 1
+        submit.layer.cornerRadius = 5
+        submit.layer.borderColor = UIColor.gray.cgColor
         view.addSubview(submit)
 
         let clear = UIButton(type: .system)
         clear.translatesAutoresizingMaskIntoConstraints = false
-        clear.setTitle("CLEAR", for: .normal)
+        clear.setTitle(" CLEAR ", for: .normal)
         clear.addTarget(self, action: #selector(clearTapped(_:)), for: .touchUpInside)
+        clear.layer.borderWidth = 1
+        clear.layer.cornerRadius = 5
+        clear.layer.borderColor = UIColor.gray.cgColor
         view.addSubview(clear)
 
         let buttonsView = UIView()
@@ -151,14 +158,29 @@ class ViewController: UIViewController {
 
             currentAnswer.text = ""
             score += 1
+            wordsSolved += 1
 
-            if score % 7 == 0 {
+            if wordsSolved % 7 == 0 {
                 let ac = UIAlertController(title: "Well done!",
-                                           message: "Are you ready for the next level?",
+                                           message: """
+                                           Level score: \(score)
+                                           Are you ready for the next level?
+                                           """,
                                            preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
                 present(ac, animated: true)
             }
+        } else {
+            score -= 1
+
+            let ac = UIAlertController(title: "Wrong",
+                                       message: "-1 point",
+                                       preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Try again", style: .default))
+            present(ac, animated: true)
+
+            // reset for the user
+            clearTapped(UIButton())
         }
     }
 
