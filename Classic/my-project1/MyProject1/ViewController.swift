@@ -17,17 +17,24 @@ class ViewController: UITableViewController {
         title = "Storm Viewer"
         navigationController?.navigationBar.prefersLargeTitles = true
 
-        let fm = FileManager.default
-        let path = Bundle.main.resourcePath!
-        var items = try! fm.contentsOfDirectory(atPath: path)
-        items.sort()
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else { return }
+            let fm = FileManager.default
+            let path = Bundle.main.resourcePath!
+            var items = try! fm.contentsOfDirectory(atPath: path)
+            items.sort()
 
-        for item in items {
-            if item.hasPrefix("nssl") {
-                pictures.append(item)
+            for item in items {
+                if item.hasPrefix("nssl") {
+                    self.pictures.append(item)
+                }
+            }
+            print(self.pictures)
+
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
-        print(pictures)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .action, target: self, action: #selector(recommendApp))
