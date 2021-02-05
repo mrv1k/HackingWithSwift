@@ -26,17 +26,15 @@ class ViewController: UITableViewController {
             "https://www.hackingwithswift.com/samples/petitions-1.json" :
             "https://www.hackingwithswift.com/samples/petitions-2.json"
 
-        DispatchQueue.global(qos: .userInitiated).async {
-            [weak self] in
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             if let url = URL(string: urlString) {
                 if let data = try? Data(contentsOf: url) {
                     self?.parse(json: data)
                     return
                 }
             }
+            self?.showError()
         }
-
-        showError()
     }
 
     @objc func showSearchAlert() {
@@ -72,7 +70,10 @@ class ViewController: UITableViewController {
             message: "There was a problem loading the feed; please check your connection and try again. ",
             preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+
+        DispatchQueue.main.async { [weak self] in
+            self?.present(ac, animated: true)
+        }
     }
 
     func parse(json: Data) {
@@ -80,7 +81,10 @@ class ViewController: UITableViewController {
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
             allPetitions = jsonPetitions.results
             filteredPetitions = jsonPetitions.results
-            tableView.reloadData()
+
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
         }
     }
 
