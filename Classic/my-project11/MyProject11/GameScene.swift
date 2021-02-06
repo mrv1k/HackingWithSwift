@@ -129,6 +129,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func destroy(ball: SKNode) {
+        if let fireParticle = SKEmitterNode(fileNamed: "FireParticles") {
+            fireParticle.position = ball.position
+            addChild(fireParticle)
+        }
+
         ball.removeFromParent()
     }
 

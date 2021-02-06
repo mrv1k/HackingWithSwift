@@ -13,6 +13,7 @@
 		572E7A5425CDC746002D46AE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7A5325CDC746002D46AE /* GameViewController.swift */; };
 		572E7A5725CDC746002D46AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572E7A5525CDC746002D46AE /* Main.storyboard */; };
 		572E7A5925CDC747002D46AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 572E7A5825CDC747002D46AE /* Assets.xcassets */; };
+		57DE9E4325CE24290084D3D8 /* FireParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 57DE9E4225CE24290084D3D8 /* FireParticles.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		572E7A5625CDC746002D46AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		572E7A5825CDC747002D46AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		572E7A5A25CDC747002D46AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57DE9E4225CE24290084D3D8 /* FireParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = FireParticles.sks; path = "../../project11-files/Content/FireParticles.sks"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				572E7A5525CDC746002D46AE /* Main.storyboard */,
 				572E7A5825CDC747002D46AE /* Assets.xcassets */,
 				572E7A5A25CDC747002D46AE /* Info.plist */,
+				57DE9E4225CE24290084D3D8 /* FireParticles.sks */,
 			);
 			path = MyProject11;
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				572E7A5725CDC746002D46AE /* Main.storyboard in Resources */,
+				57DE9E4325CE24290084D3D8 /* FireParticles.sks in Resources */,
 				572E7A4E25CDC746002D46AE /* GameScene.sks in Resources */,
 				572E7A5925CDC747002D46AE /* Assets.xcassets in Resources */,
 			);
