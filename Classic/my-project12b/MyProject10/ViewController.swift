@@ -16,6 +16,18 @@ class ViewController: UICollectionViewController,
         super.viewDidLoad()
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
+
+        let defaults = UserDefaults.standard
+
+        if let savedPeople = defaults.object(forKey: "people") as? Data {
+            let jsonDecoder = JSONDecoder()
+
+            do {
+                people = try jsonDecoder.decode([Person].self, from: savedPeople)
+            } catch {
+                print("Failed to decode people")
+            }
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -62,6 +74,7 @@ class ViewController: UICollectionViewController,
 
         let person = Person(name: "Unknown", image: imageName)
         people.append(person)
+        save()
         collectionView.reloadData()
 
         dismiss(animated: true)
@@ -83,6 +96,7 @@ class ViewController: UICollectionViewController,
 
             guard let newName = renameAC?.textFields?.first?.text else { return }
             person.name = newName
+            self.save()
             self.collectionView.reloadData()
         }))
 
@@ -95,9 +109,21 @@ class ViewController: UICollectionViewController,
 
         menuAC.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
             self.people.remove(at: indexPath.item)
+            self.save()
             self.collectionView.reloadData()
         }))
 
         present(menuAC, animated: true)
+    }
+
+    func save() {
+        let encoder = JSONEncoder()
+
+        if let savedData = try? encoder.encode(people) {
+            let defaults = UserDefaults.standard
+            defaults.set(savedData, forKey: "people")
+        } else {
+            print("Failed to save people")
+        }
     }
 }
