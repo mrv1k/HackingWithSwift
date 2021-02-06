@@ -72,7 +72,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             return
         }
 
-        let ball = SKSpriteNode(imageNamed: "ballRed")
+        let ballColors = ["Blue", "Cyan", "Green", "Grey", "Purple", "Red", "Yellow"]
+        let color = "ball\(ballColors.randomElement()!)"
+        let ball = SKSpriteNode(imageNamed: color)
+
         ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
         ball.physicsBody?.restitution = 0.4
         ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
