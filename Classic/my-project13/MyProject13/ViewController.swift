@@ -15,7 +15,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
     var context: CIContext!
     var currentFilter: CIFilter!
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +33,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         present(picker, animated: true)
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
         dismiss(animated: true)
         currentImage = image
@@ -73,10 +72,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
 
         applyProcessing()
-
     }
 
-    @IBAction func save(_ sender: Any) {}
+    @IBAction func save(_ sender: Any) {
+        guard let image = imageView.image else { return }
+
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
 
     @IBAction func intensityChanged(_ sender: Any) {
         applyProcessing()
@@ -102,13 +104,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
             currentFilter.setValue(vector, forKey: kCIInputCenterKey)
         }
 
-
         guard let outputImage = currentFilter.outputImage else { return }
 
-        if let cgImage = context.createCGImage(
-            outputImage, from: outputImage.extent) {
+        if let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
             let processedImage = UIImage(cgImage: cgImage)
             imageView.image = processedImage
         }
+    }
+
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        let ac: UIAlertController
+        if let error = error {
+            ac = UIAlertController(title: "Save Error", message: error.localizedDescription, preferredStyle: .alert)
+        } else {
+            ac = UIAlertController(title: "Saved", message: "Your altered image has been saved to your photos", preferredStyle: .alert)
+        }
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
 }
