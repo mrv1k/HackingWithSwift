@@ -47,7 +47,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         let filters = ["CIBumpDistortion", "CIGaussianBlur", "CIPixellate", "CISepiaTone",
                        "CITwirlDistortion", "CIUnsharpMask", "CIVignette"]
 
-        let ac = UIAlertController(title: "Choose Filter", message: nil, preferredStyle: .actionSheet)
+        // 2. Make the Change Filter button change its title to show the name of the currently selected filter.
+        let ac = UIAlertController(title: "Choose Filter", message: "Currently selected: \(currentFilter.name)", preferredStyle: .actionSheet)
 
         filters.forEach { filter in
             ac.addAction(UIAlertAction(title: filter, style: .default, handler: setFilter))
@@ -75,7 +76,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
     }
 
     @IBAction func save(_ sender: Any) {
-        guard let image = imageView.image else { return }
+        // 1. Try making the Save button show an error if there was no image in the image view.
+        guard let image = imageView.image else {
+            let ac = UIAlertController(title: "No image selected", message: "Please select an image before applying a filter", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+            return
+        }
 
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
@@ -123,3 +130,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         present(ac, animated: true)
     }
 }
+
+// 3. Experiment with having more than one slider, to control each of the input keys you care about. For example, you might have one for radius and one for intensity.
+// skip
