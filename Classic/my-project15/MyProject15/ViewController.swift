@@ -28,6 +28,11 @@ class ViewController: UIViewController {
             usingSpringWithDamping: 0.5,
             initialSpringVelocity: 5,
             options: []) {
+//            animations: <#T##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
+//        UIView.animate(
+//            withDuration: 1,
+//            delay: 0,
+//            options: []) {
                 switch self.currentAnimation {
                 case 0: self.imageView.transform = CGAffineTransform(scaleX: 2, y: 2)
                 case 2: self.imageView.transform = CGAffineTransform(translationX: -256, y: -256)
