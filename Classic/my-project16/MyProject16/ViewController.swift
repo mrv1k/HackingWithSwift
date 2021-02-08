@@ -23,20 +23,31 @@ class ViewController: UIViewController, MKMapViewDelegate {
         mapView.addAnnotations([london, oslo, paris, rome, washington])
     }
 
+    @IBAction func changeMapStyle(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0: mapView.mapType = MKMapType.standard
+        case 1: mapView.mapType = MKMapType.mutedStandard
+        case 2: mapView.mapType = MKMapType.satelliteFlyover
+        default: break
+        }
+    }
+
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard annotation is Capital else { return nil }
 
         let identifier = "Capital"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
 
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView?.canShowCallout = true
+            annotationView?.pinTintColor = .systemBlue
 
             let button = UIButton(type: .detailDisclosure)
             annotationView?.rightCalloutAccessoryView = button
         } else {
             annotationView?.annotation = annotation
+            annotationView?.pinTintColor = .systemRed
         }
 
         return annotationView

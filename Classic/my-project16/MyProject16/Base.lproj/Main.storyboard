@@ -22,14 +22,29 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="1Uw-6J-zeK"/>
                                 </connections>
                             </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZIp-uu-uH5">
+                                <rect key="frame" x="103" y="831" width="208" height="32"/>
+                                <segments>
+                                    <segment title="Map"/>
+                                    <segment title="Transit"/>
+                                    <segment title="Satellite"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" systemColor="systemGray3Color"/>
+                                <connections>
+                                    <action selector="changeMapStyle:" destination="BYZ-38-t0r" eventType="valueChanged" id="diW-6l-Ube"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GDr-cC-ihK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="048-Qx-toF"/>
                             <constraint firstItem="GDr-cC-ihK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2Zi-0N-CTs"/>
+                            <constraint firstItem="ZIp-uu-uH5" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="H0L-AO-2N2"/>
                             <constraint firstAttribute="bottomMargin" secondItem="GDr-cC-ihK" secondAttribute="bottom" constant="-34" id="doP-qD-Igg"/>
+                            <constraint firstItem="ZIp-uu-uH5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="103" id="iew-Nv-Rv1"/>
                             <constraint firstItem="GDr-cC-ihK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sEo-bV-hzi"/>
+                            <constraint firstItem="ZIp-uu-uH5" firstAttribute="centerX" secondItem="GDr-cC-ihK" secondAttribute="centerX" id="y09-Qj-LjM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3Vh-gF-OJC"/>
@@ -63,6 +78,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
