@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57057F4625D17C6800E18333 /* Capital.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57057F4525D17C6800E18333 /* Capital.swift */; };
 		578A121425D17A370016EAA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A121325D17A370016EAA6 /* AppDelegate.swift */; };
 		578A121625D17A370016EAA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A121525D17A370016EAA6 /* SceneDelegate.swift */; };
 		578A121825D17A370016EAA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A121725D17A370016EAA6 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57057F4525D17C6800E18333 /* Capital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capital.swift; sourceTree = "<group>"; };
 		578A121025D17A370016EAA6 /* MyProject16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyProject16.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		578A121325D17A370016EAA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		578A121525D17A370016EAA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				578A121325D17A370016EAA6 /* AppDelegate.swift */,
 				578A121525D17A370016EAA6 /* SceneDelegate.swift */,
 				578A121725D17A370016EAA6 /* ViewController.swift */,
+				57057F4525D17C6800E18333 /* Capital.swift */,
 				578A121925D17A370016EAA6 /* Main.storyboard */,
 				578A121C25D17A380016EAA6 /* Assets.xcassets */,
 				578A121E25D17A380016EAA6 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			files = (
 				578A121825D17A370016EAA6 /* ViewController.swift in Sources */,
 				578A121425D17A370016EAA6 /* AppDelegate.swift in Sources */,
+				57057F4625D17C6800E18333 /* Capital.swift in Sources */,
 				578A121625D17A370016EAA6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
