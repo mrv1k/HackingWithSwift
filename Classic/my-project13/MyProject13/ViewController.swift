@@ -36,7 +36,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
         dismiss(animated: true)
+        self.imageView.alpha = 0
+        // project 15/2: Go back to project 13 and make the image view fade in when a new picture is chosen. To make this work, set the alpha to 0 first.
         currentImage = image
+        UIView.animate(withDuration: 1, delay: 0.5) {
+            self.imageView.alpha = 1
+        }
 
         let beginImage = CIImage(image: currentImage)
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
