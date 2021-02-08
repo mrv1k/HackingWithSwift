@@ -144,7 +144,9 @@ class ViewController: UIViewController {
 
         currentAnswer.text = currentAnswer.text?.appending(buttonTitle)
         activatedButtons.append(sender)
-        sender.isHidden = true
+        UIView.animate(withDuration: 0.5, delay: 0.2) {
+            sender.alpha = 0
+        }
     }
 
     @objc func submitTapped(_ sender: UIButton) {
@@ -189,7 +191,7 @@ class ViewController: UIViewController {
         currentAnswer.text = ""
 
         for button in activatedButtons {
-            button.isHidden = false
+            button.alpha = 1
         }
 
         activatedButtons.removeAll()
@@ -203,8 +205,10 @@ class ViewController: UIViewController {
 //        let group = DispatchGroup()
 //        group.enter()
 
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            guard let self = self else { return }
+        DispatchQueue.global(qos: .background).async {
+            // FIX: weak self was breaking async loading
+//            [weak self]
+//            guard let self = self else { return }
             guard let levelFileURL = Bundle.main.url(forResource: "level\(self.level)", withExtension: "txt")
             else { return }
             guard var levelContents = try? String(contentsOf: levelFileURL) else { return }
@@ -254,7 +258,7 @@ class ViewController: UIViewController {
         loadLevel()
 
         for button in letterButtons {
-            button.isHidden = false
+            button.alpha = 1
         }
     }
 }
