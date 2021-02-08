@@ -51,6 +51,17 @@ class ViewController: UIViewController {
     }
 
     @IBAction func buttonTapped(_ sender: UIButton) {
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: []) {
+            sender.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
+        } completion: { _ in
+            UIView.animate(withDuration: 0.5) {
+                sender.transform = CGAffineTransform(scaleX: 1, y: 1)
+            }
+            self.checkAnswer(sender)
+        }
+    }
+
+    func checkAnswer(_ sender: UIButton) {
         var title: String
 
         if sender.tag == correctAnswer {
