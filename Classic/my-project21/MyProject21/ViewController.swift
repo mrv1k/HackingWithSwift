@@ -9,8 +9,11 @@ import UIKit
 import UserNotifications
 
 class ViewController: UIViewController, UNUserNotificationCenterDelegate {
+    var delayTime = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Register", style: .plain, target: self, action: #selector(registerLocal))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Schedule", style: .plain, target: self, action: #selector(scheduleLocal))
     }
@@ -40,11 +43,14 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         content.userInfo = ["customData": "fizzbuzz"]
         content.sound = .default
 
-        var dateComponent = DateComponents()
-        dateComponent.hour = 10
-        dateComponent.minute = 30
-//        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        var trigger: UNTimeIntervalNotificationTrigger
+        if delayTime != 0 {
+            trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(delayTime), repeats: false)
+            content.title = "Very " + content.title.lowercased()
+            delayTime = 0
+        } else {
+            trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        }
 
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         center.add(request)
@@ -55,7 +61,9 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         center.delegate = self
 
         let show = UNNotificationAction(identifier: "show", title: "Tell me more...", options: .foreground)
-        let category = UNNotificationCategory(identifier: "alarm", actions: [show], intentIdentifiers: [])
+        let later = UNNotificationAction(identifier: "later", title: "Remind me later", options: .authenticationRequired)
+        let destroy = UNNotificationAction(identifier: "destroy", title: "Push the red button", options: .destructive)
+        let category = UNNotificationCategory(identifier: "alarm", actions: [show, later, destroy], intentIdentifiers: [])
 
         center.setNotificationCategories([category])
     }
@@ -71,6 +79,12 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
                 print("User swiped to unlock")
             case "show":
                 print("show more information")
+            case "later":
+                print("Later dude")
+                delayTime = 60 * 60 * 24
+                scheduleLocal()
+            case "destroy":
+                print("(╯°□°)╯︵ ┻━┻")
             default:
                 break
             }
