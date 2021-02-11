@@ -9,7 +9,7 @@ import MultipeerConnectivity
 import UIKit
 
 typealias ImagePickerProtocols = UIImagePickerControllerDelegate & UINavigationControllerDelegate
-//typealias MCProtocols =
+// typealias MCProtocols =
 
 class ViewController: UICollectionViewController, ImagePickerProtocols, MCSessionDelegate, MCBrowserViewControllerDelegate {
     var images = [UIImage]()
@@ -73,6 +73,7 @@ class ViewController: UICollectionViewController, ImagePickerProtocols, MCSessio
     func startHosting(action: UIAlertAction) {
         guard let mcSession = mcSession else { return }
         mcAdvertiserAssistant = MCAdvertiserAssistant(serviceType: "my-hws-project25", discoveryInfo: nil, session: mcSession)
+        mcAdvertiserAssistant?.start()
     }
 
     func joinSession(action: UIAlertAction) {
@@ -80,5 +81,54 @@ class ViewController: UICollectionViewController, ImagePickerProtocols, MCSessio
         let mcBrowser = MCBrowserViewController(serviceType: "my-hws-project25", session: mcSession)
         mcBrowser.delegate = self
         present(mcBrowser, animated: true)
+    }
+
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {}
+
+    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {}
+
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {}
+
+    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
+        dismiss(animated: true)
+    }
+
+    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
+        dismiss(animated: true)
+    }
+
+    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        switch state {
+        case .notConnected:
+            print("Not Connected", peerID.displayName)
+        case .connecting:
+            print("Connecting", peerID.displayName)
+        case .connected:
+            print("Connected", peerID.displayName)
+        @unknown default:
+            print("Unknown state", peerID.displayName)
+        }
+    }
+
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        DispatchQueue.main.async { [self] in
+            if let image = UIImage(data: data) {
+                images.insert(image, at: 0)
+                collectionView.reloadData()
+
+                guard let mcSession = mcSession else { return }
+                guard !mcSession.connectedPeers.isEmpty else { return }
+
+                if let imageData = image.pngData() {
+                    do {
+                        try mcSession.send(imageData, toPeers: mcSession.connectedPeers, with: .reliable)
+                    } catch {
+                        let ac = UIAlertController(title: "Send error", message: error.localizedDescription, preferredStyle: .alert)
+                        ac.addAction(UIAlertAction(title: "OK", style: .default))
+                        present(ac, animated: true)
+                    }
+                }
+            }
+        }
     }
 }
