@@ -9,12 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
-    var currenDrawType = 0
+    var currenDrawType = 4
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        drawRectangle()
+        draw()
     }
 
     @IBAction func onRedrawButtonTap(_ sender: UIButton) {
@@ -24,6 +24,10 @@ class ViewController: UIViewController {
             currenDrawType = 0
         }
 
+        draw()
+    }
+
+    func draw() {
         switch currenDrawType {
         case 0: drawRectangle()
         case 1: drawCircle()
@@ -114,21 +118,32 @@ class ViewController: UIViewController {
         let image = renderer.image { context in
             context.cgContext.translateBy(x: 256, y: 256)
 
-            var first = true
             var length: CGFloat = 256
 
-            for _ in 0..<256 {
+            // do first loop manually because it has custom .move logic
+            context.cgContext.rotate(by: .pi / 2)
+            context.cgContext.move(to: CGPoint(x: length, y: 50))
+            length *= 0.99
+
+            for _ in 1..<256 {
                 context.cgContext.rotate(by: .pi / 2)
-
-                if first {
-                    first = false
-                    context.cgContext.move(to: CGPoint(x: length, y: 50))
-                } else {
-                    context.cgContext.addLine(to: CGPoint(x: length, y: 50))
-                }
-
+                context.cgContext.addLine(to: CGPoint(x: length, y: 50))
                 length *= 0.99
             }
+
+//            var first = true
+//            for _ in 0..<256 {
+//                context.cgContext.rotate(by: .pi / 2)
+//
+//                if first {
+//                    first = false
+//                    context.cgContext.move(to: CGPoint(x: length, y: 50))
+//                } else {
+//                    context.cgContext.addLine(to: CGPoint(x: length, y: 50))
+//                }
+//
+//                length *= 0.99
+//            }
 
             context.cgContext.setStrokeColor(UIColor.black.cgColor)
             context.cgContext.strokePath()
