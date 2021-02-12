@@ -106,9 +106,11 @@ private let keychainItemAccessibilityLookup: [KeychainItemAccessibility:CFString
     var lookup: [KeychainItemAccessibility:CFString] = [
         .afterFirstUnlock: kSecAttrAccessibleAfterFirstUnlock,
         .afterFirstUnlockThisDeviceOnly: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
-        .always: kSecAttrAccessibleAlways,
+        .always: kSecAttrAccessibleAfterFirstUnlock,
+//        .always: kSecAttrAccessibleAlways,
         .whenPasscodeSetThisDeviceOnly: kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
-        .alwaysThisDeviceOnly : kSecAttrAccessibleAlwaysThisDeviceOnly,
+        .alwaysThisDeviceOnly : kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
+//        .alwaysThisDeviceOnly : kSecAttrAccessibleAlwaysThisDeviceOnly,
         .whenUnlocked: kSecAttrAccessibleWhenUnlocked,
         .whenUnlockedThisDeviceOnly: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
     ]
