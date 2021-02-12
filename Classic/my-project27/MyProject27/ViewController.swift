@@ -25,17 +25,17 @@ class ViewController: UIViewController {
         }
 
         switch currenDrawType {
-        case 0:
-            drawRectangle()
-        default:
-            break
+        case 0: drawRectangle()
+        case 1: drawCircle()
+        case 2: drawCheckerboard()
+        default: break
         }
     }
 
     func drawRectangle() {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
 
-        let image = renderer.image { (context) in
+        let image = renderer.image { context in
             let rectangle = CGRect(x: 0, y: 0, width: 512, height: 512)
 
             context.cgContext.setFillColor(UIColor.red.cgColor)
@@ -44,6 +44,42 @@ class ViewController: UIViewController {
 
             context.cgContext.addRect(rectangle)
             context.cgContext.drawPath(using: .fillStroke)
+        }
+
+        imageView.image = image
+    }
+
+    func drawCircle() {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+
+        let image = renderer.image { context in
+            let rectangle = CGRect(x: 0, y: 0, width: 512, height: 512)
+                .insetBy(dx: 5, dy: 5)
+
+            context.cgContext.setFillColor(UIColor.red.cgColor)
+            context.cgContext.setStrokeColor(UIColor.black.cgColor)
+            context.cgContext.setLineWidth(10)
+
+            context.cgContext.addEllipse(in: rectangle)
+            context.cgContext.drawPath(using: .fillStroke)
+        }
+
+        imageView.image = image
+    }
+
+    func drawCheckerboard() {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+
+        let image = renderer.image { context in
+            context.cgContext.setFillColor(UIColor.black.cgColor)
+
+            for row in 0..<8 {
+                for col in 0..<8 {
+                    if (row + col) % 2 == 0 {
+                        context.cgContext.fill(CGRect(x: col * 64, y: row * 64, width: 64, height: 64))
+                    }
+                }
+            }
         }
 
         imageView.image = image
