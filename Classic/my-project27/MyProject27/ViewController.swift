@@ -32,5 +32,20 @@ class ViewController: UIViewController {
         }
     }
 
-    func drawRectangle() {}
+    func drawRectangle() {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+
+        let image = renderer.image { (context) in
+            let rectangle = CGRect(x: 0, y: 0, width: 512, height: 512)
+
+            context.cgContext.setFillColor(UIColor.red.cgColor)
+            context.cgContext.setStrokeColor(UIColor.black.cgColor)
+            context.cgContext.setLineWidth(10)
+
+            context.cgContext.addRect(rectangle)
+            context.cgContext.drawPath(using: .fillStroke)
+        }
+
+        imageView.image = image
+    }
 }
