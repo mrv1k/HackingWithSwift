@@ -5,6 +5,7 @@
 //  Created by Viktor Khotimchenko on 2021-02-12.
 //
 
+import LocalAuthentication
 import UIKit
 
 class ViewController: UIViewController {
@@ -22,7 +23,36 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onAuthenticateTapped(_ sender: UIButton) {
-        unlockSecretMessage()
+        let context = LAContext()
+        var error: NSError?
+
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "Identify yourself!"
+
+            context.evaluatePolicy(
+                .deviceOwnerAuthenticationWithBiometrics,
+                localizedReason: reason) { success, _ in
+                    DispatchQueue.main.async {
+                        if success {
+                            self.unlockSecretMessage()
+                        } else {
+                            let ac = UIAlertController(
+                                title: "Authentication failed",
+                                message: "You could not be verified; please try again.",
+                                preferredStyle: .alert)
+                            ac.addAction(UIAlertAction(title: "OK", style: .default))
+                            self.present(ac, animated: true)
+                        }
+                    }
+            }
+        } else {
+            let ac = UIAlertController(
+                title: "Biometry unavailable",
+                message: "Your device is not configured for biometric identification.",
+                preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(ac, animated: true)
+        }
     }
 
     @objc func adjustForKeyboard(notification: Notification) {
