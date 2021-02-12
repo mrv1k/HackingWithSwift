@@ -13,17 +13,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         draw()
     }
 
     @IBAction func onRedrawButtonTap(_ sender: UIButton) {
         currenDrawType += 1
-
-        if currenDrawType > 5 {
-            currenDrawType = 0
-        }
-
+        if currenDrawType > 5 { currenDrawType = 0 }
         draw()
     }
 
@@ -34,6 +29,7 @@ class ViewController: UIViewController {
         case 2: drawCheckerboard()
         case 3: drawRotatedRectangles()
         case 4: drawLines()
+        case 5: drawImagesAndText()
         default: break
         }
     }
@@ -147,6 +143,33 @@ class ViewController: UIViewController {
 
             context.cgContext.setStrokeColor(UIColor.black.cgColor)
             context.cgContext.strokePath()
+        }
+
+        imageView.image = image
+    }
+
+    func drawImagesAndText() {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+
+        let image = renderer.image { _ in
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .center
+
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 36),
+                .paragraphStyle: paragraphStyle,
+            ]
+
+            let string = """
+            The best-laid schemes o'
+            mice an' men gang aft agley
+            """
+
+            let attributesString = NSAttributedString(string: string, attributes: attributes)
+            attributesString.draw(with: CGRect(x: 32, y: 32, width: 448, height: 448), options: .usesLineFragmentOrigin, context: nil)
+
+            let mouse = UIImage(named: "mouse")
+            mouse?.draw(at: CGPoint(x: 300, y: 150))
         }
 
         imageView.image = image
