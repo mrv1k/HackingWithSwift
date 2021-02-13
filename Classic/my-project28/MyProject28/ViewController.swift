@@ -11,6 +11,15 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet var secret: UITextView!
 
+    lazy var doneButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(systemItem: .done)
+        button.target = self
+        button.action = #selector(saveSecretMessage)
+        button.isEnabled = false
+        button.tintColor = UIColor.clear
+        return button
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +44,11 @@ class ViewController: UIViewController {
                     DispatchQueue.main.async {
                         if success {
                             self.unlockSecretMessage()
+
+                            self.doneButton.isEnabled = true
+                            self.doneButton.tintColor = nil
+                            self.navigationItem.leftBarButtonItem = self.doneButton
+
                         } else {
                             let ac = UIAlertController(
                                 title: "Authentication failed",
@@ -51,7 +65,7 @@ class ViewController: UIViewController {
                 message: "Your device is not configured for biometric identification.",
                 preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(ac, animated: true)
+            present(ac, animated: true)
         }
     }
 
@@ -90,5 +104,8 @@ class ViewController: UIViewController {
         secret.resignFirstResponder()
         secret.isHidden = true
         title = "Nothing to see here"
+
+        self.doneButton.isEnabled = false
+        self.doneButton.tintColor = UIColor.clear
     }
 }
